@@ -8,25 +8,23 @@ public class TicTacGame {
     private static char dotGamer = 'X';
     private static char dotRobot = 'O';
     private static char empty = '*';
-    private static int sizeField;
-    private static int lastXGamer;
-    private static int lastYGamer;
-    private static int winCount;
+    private int sizeField;
+    private int winCount;
+    private int lastXGamer;
+    private int lastYGamer;
 
 
-    private static char[][] field;
+    private char[][] field;
 
     public TicTacGame(int sizeField, int winCount) {
-        TicTacGame.sizeField = Math.max(sizeField, 3);
-        TicTacGame.winCount = Math.min(Math.max(winCount, 3), Math.max(sizeField, 3));
-        field = new char[TicTacGame.sizeField][TicTacGame.sizeField];
-
+        this.sizeField = Math.max(sizeField, 3);
+        this.winCount = Math.min(Math.max(winCount, 3), Math.max(sizeField, 3));
+        field = new char[this.sizeField][this.sizeField];
     }
 
-
-    public static boolean stepGame(int i, int j, char dot) {
-        if ((i < sizeField) && (j < sizeField) && (field[i][j] == empty)) {
-            TicTacGame.field[i][j] = dot;
+    public boolean stepGame(int i, int j, char dot) {
+        if ((i < this.sizeField) && (j < this.sizeField) && (field[i][j] == empty)) {
+            this.field[i][j] = dot;
             lastXGamer = i;
             lastYGamer = j;
             return true;
@@ -180,15 +178,15 @@ public class TicTacGame {
         return false;
     }
 
-    public static char getEmpty() {
+    public char getEmpty() {
         return empty;
     }
 
-    public static int getSizeField() {
+    public int getSizeField() {
         return sizeField;
     }
 
-    public static char[][] getField() {
+    public char[][] getField() {
         return field;
     }
 
@@ -200,15 +198,15 @@ public class TicTacGame {
         return dotRobot;
     }
 
-    public static int getWinCount() {
+    public int getWinCount() {
         return winCount;
     }
 
-    public static int getLastXGamer() {
+    public int getLastXGamer() {
         return lastXGamer;
     }
 
-    public static int getLastYGamer() {
+    public int getLastYGamer() {
         return lastYGamer;
     }
 }

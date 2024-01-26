@@ -14,7 +14,7 @@ public class Robot {
         this.game = game;
         this.sizeField = game.getSizeField();
         this.empty = game.getEmpty();
-        this.winCount = TicTacGame.getWinCount();
+        this.winCount = game.getWinCount();
     }
 
     /**
@@ -28,7 +28,7 @@ public class Robot {
             return stepEasy();
         }
         if (level == 1) {
-            stepMedium();
+            return stepMedium();
         }
         return stepHard();
     }
@@ -42,8 +42,8 @@ public class Robot {
         int rndX;
         int rndY;
         do {
-            rndX = random.nextInt(sizeField);
-            rndY = random.nextInt(sizeField);
+            rndX = random.nextInt(this.sizeField);
+            rndY = random.nextInt(this.sizeField);
         } while (game.getField()[rndX][rndY] != empty);
 
         return new int[]{rndX, rndY};
@@ -58,7 +58,7 @@ public class Robot {
     private int[] stepMedium() {
 
         //проверяет есть ли выигрышная ход для игрока и занимает эту клетку, если она есть
-        int[] temp = searchWinStep(TicTacGame.getDotGamer());
+        int[] temp = searchWinStep(game.getDotGamer());
         if ((temp[0] != -1) && (temp[1] != -1)) {
             return new int[]{temp[0], temp[1]};
         }
@@ -73,7 +73,7 @@ public class Robot {
      */
     private int[] stepHard() {
         //сначала проверяет есть ли выигрышные комбинации
-        int[] temp = searchWinStep(TicTacGame.getDotRobot());
+        int[] temp = searchWinStep(game.getDotRobot());
         if ((temp[0] != -1) && (temp[1] != -1)) {
             return new int[]{temp[0], temp[1]};
         }
@@ -120,9 +120,9 @@ public class Robot {
             while (shift <= sizeField - winCount) {
                 currX = -1;
                 for (int i = 0; i < winCount; i++) {
-                    if (TicTacGame.getField()[shift + i][j] == dot) {
+                    if (game.getField()[shift + i][j] == dot) {
                         countDot++;
-                    } else if (TicTacGame.getField()[shift + i][j] == empty) {
+                    } else if (game.getField()[shift + i][j] == empty) {
                         currX = shift + i;
                     }
                 }
@@ -151,9 +151,9 @@ public class Robot {
             while (shift <= sizeField - winCount) {
                 currY = -1;
                 for (int j = 0; j < winCount; j++) {
-                    if (TicTacGame.getField()[i][shift + j] == dot) {
+                    if (game.getField()[i][shift + j] == dot) {
                         countDot++;
-                    } else if (TicTacGame.getField()[i][shift + j] == empty) {
+                    } else if (game.getField()[i][shift + j] == empty) {
                         currY = shift + j;
                     }
                 }
@@ -182,9 +182,9 @@ public class Robot {
             shiftX = 0;
             while (shiftX <= sizeField - winCount - j) {
                 for (int i = 0; i < winCount; i++) {
-                    if (TicTacGame.getField()[shiftX + i + j][shiftX + i] == dot) {
+                    if (game.getField()[shiftX + i + j][shiftX + i] == dot) {
                         countDot++;
-                    } else if (TicTacGame.getField()[shiftX + i + j][shiftX + i] == empty) {
+                    } else if (game.getField()[shiftX + i + j][shiftX + i] == empty) {
                         currX = shiftX + i + j;
                         currY = shiftX + i;
                     }
@@ -205,9 +205,9 @@ public class Robot {
                 currX = -1;
                 currY = -1;
                 for (int i = 0; i < winCount; i++) {
-                    if (TicTacGame.getField()[shiftX + i][shiftX + i + j] == dot) {
+                    if (game.getField()[shiftX + i][shiftX + i + j] == dot) {
                         countDot++;
-                    } else if (TicTacGame.getField()[shiftX + i][shiftX + i + j] == empty) {
+                    } else if (game.getField()[shiftX + i][shiftX + i + j] == empty) {
                         currX = shiftX + i;
                         currY = shiftX + i + j;
                     }
@@ -241,9 +241,9 @@ public class Robot {
 
             while (shiftX <= sizeField - winCount - j) {
                 for (int i = 0; i < winCount; i++) {
-                    if (TicTacGame.getField()[shiftX + i + j][sizeField - 1 - i - shiftX] == dot) {
+                    if (game.getField()[shiftX + i + j][sizeField - 1 - i - shiftX] == dot) {
                         countDot++;
-                    } else if (TicTacGame.getField()[shiftX + i + j][sizeField - 1 - i - shiftX] == empty) {
+                    } else if (game.getField()[shiftX + i + j][sizeField - 1 - i - shiftX] == empty) {
                         currX = shiftX + i + j;
                         currY = sizeField - 1 - i - shiftX;
                     }
@@ -265,9 +265,9 @@ public class Robot {
                 currX = -1;
                 currY = -1;
                 for (int i = 0; i < winCount; i++) {
-                    if (TicTacGame.getField()[shiftX + i][sizeField - 1 - i - j] == dot) {
+                    if (game.getField()[shiftX + i][sizeField - 1 - i - j] == dot) {
                         countDot++;
-                    } else if (TicTacGame.getField()[shiftX + i][sizeField - 1 - i - j] == empty) {
+                    } else if (game.getField()[shiftX + i][sizeField - 1 - i - j] == empty) {
                         currX = shiftX + i;
                         currY = sizeField - 1 - i - j;
                     }

@@ -4,8 +4,8 @@ import java.util.Scanner;
 
 
 public class ConsoleUI {
-    static Scanner scanner = new Scanner(System.in);
-
+    private static Scanner scanner = new Scanner(System.in);
+    private static TicTacGame game;
     /**
      * игра крестики - нолики
      *
@@ -15,10 +15,10 @@ public class ConsoleUI {
     public static void game(int sizeField, int winCount) {
 
         boolean stop = false;
-        TicTacGame game = new TicTacGame(sizeField, winCount);
+        game = new TicTacGame(sizeField, winCount);
         Robot robot = new Robot(game);
         int countStep = 0;
-        int maxStep = TicTacGame.getSizeField() * TicTacGame.getSizeField();
+        int maxStep = game.getSizeField() * game.getSizeField();
 
         while (!stop) {
             int level = choiceLevel();
@@ -67,7 +67,7 @@ public class ConsoleUI {
             if (step.matches("[0-9+]\\s[0-9+]")) {
                 int i = Integer.parseInt(step.split(" ")[0]);
                 int j = Integer.parseInt(step.split(" ")[1]);
-                flag = TicTacGame.stepGame(i - 1, j - 1, TicTacGame.getDotGamer());
+                flag = game.stepGame(i - 1, j - 1, TicTacGame.getDotGamer());
             }
             if (!flag) {
                 System.out.println("ошибка. поробуйте еще раз");
@@ -83,7 +83,7 @@ public class ConsoleUI {
     private static void stepRobot(Robot robot, int level) {
         //TODO добавить уровень сложности
         int[] coord = robot.step(level);
-        TicTacGame.stepGame(coord[0], coord[1], TicTacGame.getDotRobot());
+        game.stepGame(coord[0], coord[1], TicTacGame.getDotRobot());
     }
 
     /**
