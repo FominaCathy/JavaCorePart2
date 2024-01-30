@@ -21,12 +21,13 @@ public class RobotTest {
 
         Mockito.when(game.getField()).thenReturn(testField);
 
-
+        //не дает выиграть игроку
         assertArrayEquals(new int[]{2, 0}, robot.step(1));
-
+        //сначала проверяет возможность самому выиграть
         assertArrayEquals(new int[]{2, 2}, robot.step(2));
 
     }
+
 
 
 }

@@ -1,0 +1,4 @@
+CatTom,milk,10
+MouseLulu,cheese,10
+CatTom,cheese,2
+MouseLulu,coffee,1
