@@ -75,4 +75,8 @@ public class Storage {
         }
         return products.get(0);
     }
+
+    public HashMap<Product, Integer> getStorage() {
+        return storage;
+    }
 }

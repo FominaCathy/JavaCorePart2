@@ -38,7 +38,6 @@ public class Shop {
         return buyers;
     }
 
-
     public String getName() {
         return name;
     }
